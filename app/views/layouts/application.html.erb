@@ -10,7 +10,10 @@
   </head>
 
   <body>
-    <%= link_to 'Enviar uma receita', new_recipe_path %>
+    <nav>
+      <%= link_to 'Enviar uma receita', new_recipe_path %>
+      <%= render 'search' %>
+    </nav>
     <%= yield %>
   </body>
 </html>
