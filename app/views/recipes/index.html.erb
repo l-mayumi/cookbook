@@ -1,2 +1,14 @@
 <h1>CookBook</h1>
 <p>Aqui você encontra as melhores receitas da internet. :)</p>
+
+<% @recipes.each do |recipe| %>
+  <h1><%= link_to recipe.title, recipe %></h1>
+  <ul>
+    <li><%= recipe.recipe_type %></li>
+    <li><%= recipe.cuisine %></li>
+    <li><%= recipe.difficulty %></li>
+    <li><%= recipe.cook_time_min %></li>
+    <li><%= recipe.ingredients %></li>
+    <li><%= recipe.cook_method %></li>
+  </ul>
+<% end %>
