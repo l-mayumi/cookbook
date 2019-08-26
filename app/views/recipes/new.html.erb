@@ -1,7 +1,8 @@
 <h2>Cadastrar receita</h2>
+
 <% if flash[:alert] %>
     <p><%= flash[:alert] %></p>
-  <% end %>
+<% end %>
 
 <%= form_for @recipe do |form| %>
   <p>
@@ -14,31 +15,31 @@
     <%= form.text_field :recipe_type %>
   </p>
 
-    <p>
+  <p>
     <%= form.label :cuisine, 'Cozinha' %><br>
     <%= form.text_field :cuisine %>
   </p>
 
-    <p>
+  <p>
     <%= form.label :difficulty, 'Dificuldade' %><br>
     <%= form.text_field :difficulty %>
   </p>
 
-    <p>
+  <p>
     <%= form.label :cook_time, 'Tempo de Preparo' %><br>
     <%= form.number_field :cook_time %>
   </p>
 
-    <p>
+  <p>
     <%= form.label :ingredients, 'Ingredientes' %><br>
     <%= form.text_field :ingredients %>
   </p>
  
-
-   <p>
+  <p>
     <%= form.label :cook_method, 'Como Preparar' %><br>
     <%= form.text_field :cook_method %>
   </p>
+
   <p>
     <%= form.submit 'Enviar' %>
   </p>
