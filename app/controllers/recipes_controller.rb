@@ -1,6 +1,7 @@
 class RecipesController < ApplicationController
   def index
   	@recipes = Recipe.all
+    @recipe_types = RecipeType.all
   end
 
   def show
@@ -9,15 +10,17 @@ class RecipesController < ApplicationController
 
   def new
     @recipe = Recipe.new
+    @recipe_types = RecipeType.all
   end
 
   def create
-    @recipe = Recipe.new(recipe_params)
+    @recipe = Recipe.create(recipe_params)
 
     if @recipe.save
       redirect_to @recipe
     else
       flash[:alert] = 'Você deve informar todos os dados da receita'
+      @recipe_types = RecipeType.all
       render :new
     end
   end
@@ -33,6 +36,7 @@ class RecipesController < ApplicationController
       redirect_to @recipe
     else
       flash[:alert] = 'Você deve informar todos os dados da receita'
+      @recipe_types = RecipeType.all
       render :edit
     end
   end
