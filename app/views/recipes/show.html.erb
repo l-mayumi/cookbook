@@ -21,5 +21,7 @@
     <%= @recipe.cook_method %>
   </p>
 
- <%= link_to 'Editar', edit_recipe_path %>
+<% if @recipe.user == current_user %>
+   <%= link_to 'Editar', edit_recipe_path %>
+<% end %>
  <%= link_to 'Voltar', root_path %>

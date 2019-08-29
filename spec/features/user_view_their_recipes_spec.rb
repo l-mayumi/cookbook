@@ -48,6 +48,6 @@ feature 'User view their recipes' do
     click_on 'Minhas Receitas'
 
     # expectativas do usuário após a ação
-    expect(page).to content('Você não tem receitas cadastradas ainda.')
+    expect(page).to have_content('Você não tem receitas cadastradas ainda.')
   end
 end
