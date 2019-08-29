@@ -10,7 +10,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_29_033847) do
+ActiveRecord::Schema.define(version: 2019_08_29_050257) do
+
+  create_table "recipe_list_items", force: :cascade do |t|
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "recipe_id"
+    t.integer "recipe_list_id"
+    t.index ["recipe_id"], name: "index_recipe_list_items_on_recipe_id"
+    t.index ["recipe_list_id"], name: "index_recipe_list_items_on_recipe_list_id"
+  end
+
+  create_table "recipe_lists", force: :cascade do |t|
+    t.string "title"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "user_id"
+    t.index ["user_id"], name: "index_recipe_lists_on_user_id"
+  end
 
   create_table "recipe_types", force: :cascade do |t|
     t.string "name"
@@ -45,6 +62,9 @@ ActiveRecord::Schema.define(version: 2019_08_29_033847) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "recipe_list_items", "recipe_lists"
+  add_foreign_key "recipe_list_items", "recipes"
+  add_foreign_key "recipe_lists", "users"
   add_foreign_key "recipes", "recipe_types"
   add_foreign_key "recipes", "users"
 end
