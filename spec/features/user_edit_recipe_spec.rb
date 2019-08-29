@@ -2,8 +2,8 @@ require 'rails_helper'
 
 feature 'User update recipe' do
   scenario 'successfully' do
+    User.create(email: 'user0@email.com', password: '123456')
     recipe_type = RecipeType.create(name: 'Sobremesa')
-    RecipeType.create(name: 'Entrada')
     Recipe.create(title: 'Bolodecenoura', difficulty: 'Médio',
                   recipe_type: recipe_type, cuisine: 'Brasileira',
                   cook_time: 50, ingredients: 'Farinha, açucar, cenoura',
@@ -11,11 +11,17 @@ feature 'User update recipe' do
 
     # simula a ação do usuário
     visit root_path
+
+    click_on 'Entrar'
+    fill_in 'Email', with: 'user0@email.com'
+    fill_in 'Senha', with: '123456'
+    click_on 'Login'
+
     click_on 'Bolodecenoura'
     click_on 'Editar'
 
     fill_in 'Título', with: 'Bolo de cenoura'
-    select 'Entrada', from: 'Tipo da Receita'
+    select 'Sobremesa', from: 'Tipo da Receita'
     fill_in 'Dificuldade', with: 'Médio'
     fill_in 'Tempo de Preparo', with: '45'
     fill_in 'Ingredientes', with: 'Cenoura, farinha, ovo, oleo de soja e chocolate'
@@ -32,6 +38,7 @@ feature 'User update recipe' do
   end
 
   scenario 'and must fill in all fields' do
+    User.create(email: 'user0@email.com', password: '123456')
     recipe_type = RecipeType.create(name: 'Sobremesa')
     Recipe.create(title: 'Bolodecenoura', difficulty: 'Médio',
                   recipe_type: recipe_type, cuisine: 'Brasileira',
@@ -40,6 +47,11 @@ feature 'User update recipe' do
 
     # simula a ação do usuário
     visit root_path
+    click_on 'Entrar'
+    fill_in 'Email', with: 'user0@email.com'
+    fill_in 'Senha', with: '123456'
+    click_on 'Login'
+
     click_on 'Bolodecenoura'
     click_on 'Editar'
 
