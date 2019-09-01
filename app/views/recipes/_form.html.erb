@@ -39,6 +39,11 @@
   </p>
 
   <p>
+    <%= form.label :recipe_photo, 'Enviar foto'%>
+    <%= form.file_field :recipe_photo %>
+  </p>
+
+  <p>
     <%= form.submit 'Enviar' %>
   </p>
 <% end %>

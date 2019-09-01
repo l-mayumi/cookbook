@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Cookbook</title>
+    <title>CookBook</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -10,6 +10,11 @@
   </head>
 
   <body>
+    <header>
+      <h1><%= link_to 'CookBook', root_path %></h1>
+      <p>Aqui você encontra as melhores receitas da internet. :)</p>
+    </header>
+
     <nav>
       <% if user_signed_in? %>
         <p>Ola, <%= current_user.email %>!</p>
@@ -21,9 +26,19 @@
       <% else %>
         <%= link_to 'Entrar', new_user_session_path%>
       <% end %>
+    </nav>
+
+    <aside>
       <%= link_to 'Todas as receitas', all_recipes_path %>
       <%= render 'recipes/search' %>
-    </nav>
-    <%= yield %>
+    </aside>
+
+    <main>
+      <%= yield %>
+    </main>
+
+    <footer>
+      <p>CookBook© 2019 - Todos os direitos reservados.</p>
+    </footer>
   </body>
 </html>
