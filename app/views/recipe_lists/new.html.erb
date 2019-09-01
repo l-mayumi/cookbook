@@ -1,6 +1,6 @@
 <h2>Nova Lista</h2>
 
-<% if flash[:alert] %>
+<% if @recipe_list.errors.any? %>
     <p><%= flash[:alert] %></p>
 <% end %>
 

@@ -16,7 +16,7 @@ class RecipeListsController < ApplicationController
     if @recipe_list.save
       redirect_to @recipe_list
     else
-      flash[:alert] = 'Você deve informar o nome da lista'
+      flash[:alert] = 'Você deve informar um nome único'
       render :new
     end
   end

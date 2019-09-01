@@ -35,15 +35,16 @@ feature 'Visitor visit homepage' do
     user = User.create(email: 'user0@email.com', password: '123456')
     recipe_type = RecipeType.create(name: 'Sobremesa')
     another_recipe_type = RecipeType.create(name: 'Prato principal')
-    recipe = Recipe.create(title: 'Bolo de cenoura', difficulty: 'Médio',
-                           recipe_type: recipe_type, cuisine: 'Brasileira',
+
+
+    recipe = Recipe.create(title: 'Bolo de cenoura', recipe_type: recipe_type,
+                           cuisine: 'Brasileira', difficulty: 'Médio',
                            cook_time: 50,
                            ingredients: 'Farinha, açucar, cenoura',
                            cook_method: 'Cozinhe a cenoura, corte em pedaços pequenos,'\
                            ' misture com o restante dos ingredientes', user: user)
 
-    another_recipe = Recipe.create(title: 'Feijoada',
-                                   recipe_type: another_recipe_type,
+    another_recipe = Recipe.create(title: 'Feijoada', recipe_type: another_recipe_type,
                                    cuisine: 'Brasileira', difficulty: 'Difícil',
                                    cook_time: 90,
                                    ingredients: 'Feijão e carnes',
