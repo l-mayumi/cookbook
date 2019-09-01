@@ -10,7 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_01_185349) do
+ActiveRecord::Schema.define(version: 2019_09_01_202820) do
+
+  create_table "cuisines", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "recipe_list_items", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
@@ -37,7 +43,6 @@ ActiveRecord::Schema.define(version: 2019_09_01_185349) do
 
   create_table "recipes", force: :cascade do |t|
     t.string "title"
-    t.string "cuisine"
     t.string "difficulty"
     t.integer "cook_time"
     t.text "ingredients"
@@ -47,6 +52,8 @@ ActiveRecord::Schema.define(version: 2019_09_01_185349) do
     t.integer "recipe_type_id"
     t.integer "user_id"
     t.integer "status", default: 0
+    t.integer "cuisine_id"
+    t.index ["cuisine_id"], name: "index_recipes_on_cuisine_id"
     t.index ["recipe_type_id"], name: "index_recipes_on_recipe_type_id"
     t.index ["user_id"], name: "index_recipes_on_user_id"
   end
@@ -67,6 +74,7 @@ ActiveRecord::Schema.define(version: 2019_09_01_185349) do
   add_foreign_key "recipe_list_items", "recipe_lists"
   add_foreign_key "recipe_list_items", "recipes"
   add_foreign_key "recipe_lists", "users"
+  add_foreign_key "recipes", "cuisines"
   add_foreign_key "recipes", "recipe_types"
   add_foreign_key "recipes", "users"
 end

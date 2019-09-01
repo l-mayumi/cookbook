@@ -14,8 +14,8 @@
   </p>
 
   <p>
-    <%= form.label :cuisine, 'Cozinha' %><br>
-    <%= form.text_field :cuisine %>
+    <%= form.label :cuisine_id, 'Cozinha' %>
+    <%= form.collection_select(:cuisine_id, @cuisines, :id, :name) %>
   </p>
 
   <p>

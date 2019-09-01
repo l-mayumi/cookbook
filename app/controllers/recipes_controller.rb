@@ -4,6 +4,7 @@ class RecipesController < ApplicationController
   def index
   	@recipes = Recipe.approved.last(6).reverse
     @recipe_types = RecipeType.all
+    @cuisines = Cuisine.all
   end
 
   def all_recipes
@@ -19,6 +20,7 @@ class RecipesController < ApplicationController
   def new
     @recipe = Recipe.new
     @recipe_types = RecipeType.all
+    @cuisines = Cuisine.all
     @recipe_lists = RecipeList.where(user: current_user)
   end
 
@@ -30,6 +32,7 @@ class RecipesController < ApplicationController
     else
       flash[:alert] = 'Não foi possível salvar a receita'
       @recipe_types = RecipeType.all
+      @cuisines = Cuisine.all
       @recipe_lists = RecipeList.where(user: current_user)
       render :new
     end
@@ -38,6 +41,7 @@ class RecipesController < ApplicationController
   def edit
     @recipe = Recipe.find(params[:id])
     @recipe_types = RecipeType.all
+    @cuisines = Cuisine.all
     @recipe_lists = RecipeList.where(user: current_user)
   end
 
@@ -49,6 +53,7 @@ class RecipesController < ApplicationController
     else
       flash[:alert] = 'Não foi possível salvar a receita'
       @recipe_types = RecipeType.all
+      @cuisines = Cuisine.all      
       @recipe_lists = RecipeList.where(user: current_user)
       render :edit
     end
@@ -79,6 +84,6 @@ class RecipesController < ApplicationController
   private
 
   def recipe_params
-    params.require(:recipe).permit(:title, :recipe_type_id, :user_id, :cuisine, :difficulty, :cook_time, :ingredients, :cook_method)
+    params.require(:recipe).permit(:title, :recipe_type_id, :user_id, :cuisine_id, :difficulty, :cook_time, :ingredients, :cook_method)
   end
 end

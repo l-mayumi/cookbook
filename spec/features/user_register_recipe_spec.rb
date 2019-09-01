@@ -5,6 +5,7 @@ feature 'User register recipe' do
     #cria os dados necessários, nesse caso não vamos criar dados no banco
     User.create(email: 'user0@email.com', password: '123456')
     RecipeType.create(name: 'Entrada')
+    Cuisine.create(name: 'Arabe')
 
     # simula a ação do usuário
     visit root_path
@@ -18,7 +19,7 @@ feature 'User register recipe' do
 
     fill_in 'Título', with: 'Tabule'
     select 'Entrada', from: 'Tipo da Receita'
-    fill_in 'Cozinha', with: 'Arabe'
+    select 'Arabe', from: 'Cozinha'
     fill_in 'Dificuldade', with: 'Fácil'
     fill_in 'Tempo de Preparo', with: '45'
     fill_in 'Ingredientes', with: 'Trigo para quibe, cebola, tomate picado, azeite, salsinha'
@@ -44,7 +45,6 @@ feature 'User register recipe' do
     click_on 'Enviar uma receita'
 
     fill_in 'Título', with: ''
-    fill_in 'Cozinha', with: ''
     fill_in 'Dificuldade', with: ''
     fill_in 'Tempo de Preparo', with: ''
     fill_in 'Ingredientes', with: ''
@@ -58,18 +58,19 @@ feature 'User register recipe' do
     #cria os dados necessários, nesse caso não vamos criar dados no banco
     user = User.create(email: 'user0@email.com', password: '123456')
     recipe_type = RecipeType.create(name: 'Sobremesa')
+    cuisine = Cuisine.create(name: 'Brasileira')
     Recipe.create(title: 'Bolo de cenoura', recipe_type: recipe_type,
-                  difficulty: 'Médio', cuisine: 'Brasileira',
+                  difficulty: 'Médio', cuisine: cuisine,
                   cook_time: 50, ingredients: 'Farinha, açucar, cenoura',
                   cook_method: 'Cozinhe a cenoura, corte em pedaços pequenos, misture com o restante dos ingredientes',
                   user: user, status: :approved)
     Recipe.create(title: 'Bolo de laranja', recipe_type: recipe_type,
-                    difficulty: 'Médio', cuisine: 'Brasileira',
+                    difficulty: 'Médio', cuisine: cuisine,
                     cook_time: 50, ingredients: 'Farinha, açucar, laranja',
                     cook_method: 'Corte a laranja em pedaços pequenos, misture com o restante dos ingredientes',
                     user: user, status: :pending)
     Recipe.create(title: 'Bolo de chocolate', recipe_type: recipe_type,
-                      difficulty: 'Médio', cuisine: 'Brasileira',
+                      difficulty: 'Médio', cuisine: cuisine,
                       cook_time: 50, ingredients: 'Farinha, açucar, cenoura',
                       cook_method: 'Corte o chocolate em pedaços pequenos, misture com o restante dos ingredientes',
                       user: user, status: :rejected)
