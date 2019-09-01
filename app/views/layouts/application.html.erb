@@ -21,6 +21,7 @@
       <% else %>
         <%= link_to 'Entrar', new_user_session_path%>
       <% end %>
+      <%= link_to 'Todas as receitas', all_recipes_path %>
       <%= render 'recipes/search' %>
     </nav>
     <%= yield %>

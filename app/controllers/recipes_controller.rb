@@ -2,8 +2,12 @@ class RecipesController < ApplicationController
   before_action :authenticate_user!, only: %i[new create edit update add_to_list pending]
 
   def index
-  	@recipes = Recipe.where(status: :approved)
+  	@recipes = Recipe.approved.last(6).reverse
     @recipe_types = RecipeType.all
+  end
+
+  def all_recipes
+    @recipes = Recipe.approved
   end
 
   def show
