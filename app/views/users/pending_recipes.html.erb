@@ -1,0 +1,9 @@
+<h1>Receitas pendentes</h1>
+
+<% if @recipes.any? %>
+  <% @recipes.each do |recipe| %>
+    <li><%= link_to recipe.title, recipe %></li>
+  <% end %>
+<% else %>
+  <%= flash[:failure] %>
+<% end %>
