@@ -1,4 +1,7 @@
 <h1>Receitas pendentes</h1>
+<% if flash[:notice] %>
+  <p><%= flash[:notice] %></p>
+<% end %>
 
 <% if @recipes.any? %>
   <% @recipes.each do |recipe| %>

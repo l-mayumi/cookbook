@@ -1,5 +1,5 @@
 class RecipesController < ApplicationController
-  before_action :authenticate_user!, only: %i[new create edit update]
+  before_action :authenticate_user!, only: %i[new create edit update add_to_list pending]
 
   def index
   	@recipes = Recipe.where(status: :approved)
@@ -72,22 +72,9 @@ class RecipesController < ApplicationController
     @recipes = Recipe.pending
   end
 
-  def approved
-    Recipe.find(params[:id]).approved!
-    flash[:notice] = 'Receita aprovada com sucesso'
-    redirect_to pending_recipes_path
-  end
-
-  def rejected
-    Recipe.find(params[:id]).rejected!
-    flash[:notice] = 'Receita rejeitada com sucesso'
-    redirect_to pending_recipes_path
-  end
-
-
   private
 
   def recipe_params
-    params.require(:recipe).permit(:title, :recipe_type_id, :cuisine, :difficulty, :cook_time, :ingredients, :cook_method)
+    params.require(:recipe).permit(:title, :recipe_type_id, :user_id, :cuisine, :difficulty, :cook_time, :ingredients, :cook_method)
   end
 end
