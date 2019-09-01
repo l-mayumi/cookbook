@@ -1,0 +1,14 @@
+<h1>Minhas listas de receita</h1>
+<p>
+  <%= link_to 'Criar nova lista', new_list_path, method: :post %>
+</p>
+
+<% if @recipe_lists.any? %>
+  <% @recipe_lists.each do |recipe_list| %>
+  <ul>
+    <li><%= link_to recipe_list.title, recipe_list %></li>
+  </ul>
+  <% end %>
+<% else %>
+  <%= flash[:failure] %>
+<% end %>

@@ -1,0 +1,16 @@
+<h2>Nova Lista</h2>
+
+<% if flash[:alert] %>
+    <p><%= flash[:alert] %></p>
+<% end %>
+
+<%= form_for @recipe_list do |form| %>
+  <p>
+    <%= form.label :title , 'Título'%><br>
+    <%= form.text_field :title %>
+  </p>
+  
+  <p>
+    <%= form.submit 'Criar lista' %>
+  </p>
+<% end %>

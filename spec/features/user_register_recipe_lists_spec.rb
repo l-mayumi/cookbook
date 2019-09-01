@@ -17,9 +17,9 @@ feature 'User register recipe lists' do
     click_on 'Minhas Listas'
     click_on 'Criar nova lista'
 
-    fill_in 'Titulo', with: 'Festa de aniversario'
+    fill_in 'Título', with: 'Festa de aniversario'
     click_on 'Criar lista'
 
-    expect(page).to have_css('li', text: 'Festa de aniversario')
+    expect(page).to have_css('h2', text: 'Festa de aniversario')
   end
 end
