@@ -1,11 +1,23 @@
   <h2><%= @recipe.title %></h2>
-  <%= image_tag @recipe.recipe_photo %>
-  <p>Receita enviada por <%= @recipe.user.email %>.</p>
-
+  <p>Receita enviada por <%= @recipe.user.email %>.
+  <% if @recipe.rejected? %>
+    <span class="btn btn-outline-danger">Recusada</span>
+  <% else %>
+    <% if @recipe.pending? %>
+      <span class="btn btn-outline-warning">Pendente</span>
+    <% end %>
+  <% end %>
+  <br>
   <% if current_user && current_user.admin? %>
-    <%= link_to 'Aprovar', approve_recipe_path %>
-    <%= link_to 'Rejeitar', reject_recipe_path %>
-  <% end%>
+    <%= link_to 'Aprovar', approve_recipe_path, class: "btn btn-success" %>
+    <%= link_to 'Rejeitar', reject_recipe_path, class: "btn btn-danger" %>
+  <% end%></p>
+
+  <p>
+    <% if @recipe.recipe_photo %>
+      <%= image_tag @recipe.recipe_photo, class: "img" %>
+    <% end %>
+  </p>
  
   <h3>Detalhes</h3>
   <p>Tipo da Receita: 
@@ -28,6 +40,6 @@
   </p>
 
 <% if @recipe.user == current_user %>
-   <%= link_to 'Editar', edit_recipe_path %>
+  <%= link_to 'Editar', edit_recipe_path, class: "btn btn-dark" %>
 <% end %>
- <%= link_to 'Voltar', root_path %>
+ <%= link_to 'Voltar', root_path, class: "btn btn-secondary" %>

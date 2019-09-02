@@ -10,5 +10,7 @@
   </ul>
   <% end %>
 <% else %>
-  <%= flash[:failure] %>
+  <div class="alert alert-secondary">
+    <%= flash[:failure] %>
+  </div>
 <% end %>

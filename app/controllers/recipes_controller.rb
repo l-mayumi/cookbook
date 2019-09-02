@@ -65,7 +65,6 @@ class RecipesController < ApplicationController
 
   def add_to_list
     @recipe = Recipe.find(params[:id])
-    
     @recipe_list_item = RecipeListItem.new(params.require(:recipe_list_item).permit(:recipe_list_id))
     @recipe_list_item.recipe = @recipe
 

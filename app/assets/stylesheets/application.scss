@@ -1,0 +1,49 @@
+@import "bootstrap";
+
+$font-stack: Helvetica, sans-serif;
+$black: #333;
+$primary: rgb(167, 32, 32);
+
+body{
+    font: 0.75em $font-stack;
+    line-height: 1.2em;
+    color: $black;
+    background: $primary;
+}
+
+.container-fluid{
+    background: #FFF;
+}
+
+.item-img{
+    width: 150px;
+}
+
+.img{
+    width: 100%;
+}
+
+h1, h2, h3, h4{
+    color: $primary;
+}
+
+a{
+    color: $primary;
+}
+
+.btn{
+    font: 1em $font-stack;
+    line-height: 1em;
+}
+
+nav{
+    background: 100% $primary;
+    font: 100% $font-stack;
+    color: #FFF;
+    text-align: right;
+}
+
+hr{
+    border: 2px solid $primary;
+    width: 100%;
+}

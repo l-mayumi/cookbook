@@ -1,49 +1,51 @@
 <% if flash[:alert] %>
-    <p><%= flash[:alert] %></p>
+  <div class="alert alert-danger">
+    <%= flash[:alert] %>
+  </div>
 <% end %>
 
 <%= form_for @recipe do |form| %>
-  <p>
+  <div class="form-group">
     <%= form.label :title , 'Título'%><br>
     <%= form.text_field :title %>
-  </p>
+  </div>
  
-  <p>
+  <div class="form-group">
     <%= form.label :recipe_type_id, 'Tipo da Receita' %>
     <%= form.collection_select(:recipe_type_id, @recipe_types, :id, :name) %>
-  </p>
+  </div>
 
-  <p>
+  <div class="form-group">
     <%= form.label :cuisine_id, 'Cozinha' %>
     <%= form.collection_select(:cuisine_id, @cuisines, :id, :name) %>
-  </p>
+  </div>
 
-  <p>
+  <div class="form-group">
     <%= form.label :difficulty, 'Dificuldade' %><br>
     <%= form.text_field :difficulty %>
-  </p>
+  </div>
 
-  <p>
+  <div class="form-group">
     <%= form.label :cook_time, 'Tempo de Preparo' %><br>
     <%= form.number_field :cook_time %>
-  </p>
+  </div>
 
-  <p>
+  <div class="form-group">
     <%= form.label :ingredients, 'Ingredientes' %><br>
-    <%= form.text_field :ingredients %>
-  </p>
+    <%= form.text_area :ingredients %>
+  </div>
  
-  <p>
+  <div class="form-group">
     <%= form.label :cook_method, 'Como Preparar' %><br>
-    <%= form.text_field :cook_method %>
-  </p>
+    <%= form.text_area :cook_method %>
+  </div>
 
-  <p>
+  <div class="form-group">
     <%= form.label :recipe_photo, 'Enviar foto'%>
     <%= form.file_field :recipe_photo %>
-  </p>
+  </div>
 
-  <p>
-    <%= form.submit 'Enviar' %>
-  </p>
+  <div class="form-group">
+    <%= form.submit 'Enviar', class: "btn btn-dark" %>
+  </div>
 <% end %>

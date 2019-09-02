@@ -1,6 +1,8 @@
 <h2>Receitas pendentes</h2>
 <% if flash[:notice] %>
-  <p><%= flash[:notice] %></p>
+  <div class="alert alert-success">
+    <%= flash[:notice] %>
+  </div>
 <% end %>
 
 <% if @recipes.any? %>
@@ -8,5 +10,7 @@
     <li><%= link_to recipe.title, recipe %></li>
   <% end %>
 <% else %>
-  <%= flash[:failure] %>
+  <div class="alert alert-secondary">
+    <%= flash[:failure] %>
+  </div>
 <% end %>

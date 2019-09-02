@@ -1,16 +1,18 @@
 <h2>Nova Lista</h2>
 
 <% if @recipe_list.errors.any? %>
-    <p><%= flash[:alert] %></p>
+  <div class="alert alert-danger">
+    <%= flash[:alert] %>
+  </div>
 <% end %>
 
 <%= form_for @recipe_list do |form| %>
-  <p>
+  <div class="form-group">
     <%= form.label :title , 'Título'%><br>
     <%= form.text_field :title %>
-  </p>
+  </div>
   
-  <p>
-    <%= form.submit 'Criar lista' %>
-  </p>
+  <div class="form-group">
+    <%= form.submit 'Criar lista', class: "btn btn-dark" %>
+  </div>
 <% end %>
