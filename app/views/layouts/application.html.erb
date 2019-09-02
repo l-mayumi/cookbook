@@ -39,8 +39,25 @@
           <% if user_signed_in? %>
             <p>Ola, <%= current_user.email %>!</p>
           <% end %>
-          <p><%= link_to 'Todas as receitas', all_recipes_path %></p>
-          <%= render 'recipes/search' %>
+          
+          <p>
+            <%= render 'recipes/search' %>
+          </p>
+
+          <h4>Ver receitas</h4>
+          <p>
+            <%= link_to 'Todas as receitas', all_recipes_path %>
+          </p>
+          <p>
+            <h5>Por tipo:</h5>
+            <p>
+              <%= render 'recipe_types/list' %>
+            </p>
+            <h5>Por cozinha:</h5>
+            <p>
+              <%= render 'cuisines/list' %>
+            </p>
+          </p>
         </aside>
 
         <main class="col-sm-8">
