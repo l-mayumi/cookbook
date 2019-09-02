@@ -6,9 +6,10 @@ feature 'Visitor view recipe details' do
     user = User.create(email: 'user0@email.com', password: '123456')
     recipe_type = RecipeType.create(name: 'Sobremesa')
     cuisine = Cuisine.create(name: 'Brasileira')
+    file = fixture_file_upload("recipe.jpeg")
     recipe = Recipe.create(title: 'Bolo de cenoura', recipe_type: recipe_type,
                            cuisine: cuisine, difficulty: 'Médio',
-                           cook_time: 60,
+                           cook_time: 60, recipe_photo: file,
                            ingredients: 'Farinha, açucar, cenoura',
                            cook_method: 'Cozinhe a cenoura, corte em pedaços pequenos,'\
                            ' misture com o restante dos ingredientes', user: user, status: :approved)
@@ -18,7 +19,7 @@ feature 'Visitor view recipe details' do
     click_on recipe.title
 
     # expectativas do usuário após a ação
-    expect(page).to have_css('h1', text: recipe.title)
+    expect(page).to have_css('h2', text: recipe.title)
     expect(page).to have_css('h3', text: 'Detalhes')
     expect(page).to have_css('p', text: recipe.recipe_type.name)
     expect(page).to have_css('p', text: recipe.cuisine.name)
@@ -35,9 +36,10 @@ feature 'Visitor view recipe details' do
     user = User.create(email: 'user0@email.com', password: '123456')
     recipe_type = RecipeType.create(name: 'Sobremesa')
     cuisine = Cuisine.create(name: 'Brasileira')
+    file = fixture_file_upload("recipe.jpeg")
     recipe = Recipe.create(title: 'Bolo de cenoura', recipe_type: recipe_type,
                            cuisine: cuisine, difficulty: 'Médio',
-                           cook_time: 60,
+                           cook_time: 60, recipe_photo: file,
                            ingredients: 'Farinha, açucar, cenoura',
                            cook_method: 'Cozinhe a cenoura, corte em pedaços pequenos,'\
                            ' misture com o restante dos ingredientes', user: user, status: :approved)

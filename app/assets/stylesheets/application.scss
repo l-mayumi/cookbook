@@ -3,6 +3,7 @@
 $font-stack: Helvetica, sans-serif;
 $black: #333;
 $primary: rgb(167, 32, 32);
+$titles: Courier New;
 
 body{
     font: 0.75em $font-stack;
@@ -11,7 +12,11 @@ body{
     background: $primary;
 }
 
-.container-fluid{
+a{
+    color: $primary;
+}
+
+.container{
     background: #FFF;
 }
 
@@ -25,15 +30,17 @@ body{
 
 h1, h2, h3, h4{
     color: $primary;
+    font-family: $titles;
 }
 
 a{
-    color: $primary;
+    font: $font-stack;
+    line-height: 1em;
 }
 
-.btn{
-    font: 1em $font-stack;
-    line-height: 1em;
+a:hover, a:active{
+    text-decoration: none;
+    color: $black;
 }
 
 nav{
@@ -43,7 +50,33 @@ nav{
     text-align: right;
 }
 
+nav a{
+    color: #FFF;
+}
+
+nav a:hover{
+    color:#FFF;
+    background: $black;
+}
+
+nav a:active{
+    color: $primary;
+    background: #FFF;
+}
+
+ul{
+    padding-left: 20px;
+}
+
 hr{
     border: 2px solid $primary;
     width: 100%;
+}
+
+.logo a{
+    color: $primary;
+    text-decoration: none;
+    font-family: $titles;
+    letter-spacing: 5px;
+    text-transform: uppercase;
 }

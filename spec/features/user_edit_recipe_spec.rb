@@ -5,8 +5,9 @@ feature 'User update recipe' do
     user = User.create(email: 'user0@email.com', password: '123456')
     recipe_type = RecipeType.create(name: 'Sobremesa')
     cuisine = Cuisine.create(name: 'Brasileira')
+    file = fixture_file_upload("recipe.jpeg")
     Recipe.create(title: 'Bolodecenoura', difficulty: 'Médio',
-                  recipe_type: recipe_type, cuisine: cuisine,
+                  recipe_type: recipe_type, cuisine: cuisine, recipe_photo: file,
                   cook_time: 50, ingredients: 'Farinha, açucar, cenoura',
                   cook_method: 'Cozinhe a cenoura, corte em pedaços pequenos, misture com o restante dos ingredientes',
                   user: user, status: :approved)
@@ -31,7 +32,7 @@ feature 'User update recipe' do
 
     click_on 'Enviar'
 
-    expect(page).to have_css('h1', text: 'Bolo de cenoura')
+    expect(page).to have_css('h2', text: 'Bolo de cenoura')
     expect(page).to have_css('h3', text: 'Detalhes')
     expect(page).to have_css('p', text: 'Médio')
     expect(page).to have_css('p', text: '45 minutos')
@@ -43,8 +44,9 @@ feature 'User update recipe' do
     user = User.create(email: 'user0@email.com', password: '123456')
     recipe_type = RecipeType.create(name: 'Sobremesa')
     cuisine = Cuisine.create(name: 'Brasileira')
+    file = fixture_file_upload("recipe.jpeg")
     Recipe.create(title: 'Bolodecenoura', difficulty: 'Médio',
-                  recipe_type: recipe_type, cuisine: cuisine,
+                  recipe_type: recipe_type, cuisine: cuisine, recipe_photo: file,
                   cook_time: 50, ingredients: 'Farinha, açucar, cenoura',
                   cook_method: 'Cozinhe a cenoura, corte em pedaços pequenos,'\
                   ' misture com o restante dos ingredientes', user: user, status: :approved)
@@ -74,8 +76,9 @@ feature 'User update recipe' do
     another_user = User.create(email: 'user1@email.com', password: '123456')
     recipe_type = RecipeType.create(name: 'Sobremesa')
     cuisine = Cuisine.create(name: 'Brasileira')
+    file = fixture_file_upload("recipe.jpeg")
     Recipe.create(title: 'Bolodecenoura', difficulty: 'Médio',
-                  recipe_type: recipe_type, cuisine: cuisine,
+                  recipe_type: recipe_type, cuisine: cuisine, recipe_photo: file,
                   cook_time: 50, ingredients: 'Farinha, açucar, cenoura',
                   cook_method: 'Cozinhe a cenoura, corte em pedaços pequenos, misture com o restante dos ingredientes',
                   user: another_user, status: :approved)

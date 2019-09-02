@@ -6,9 +6,10 @@ feature 'Admin approved recipes' do
     admin = User.create!(email: 'admin@email.com', password: '123456', admin: true)
     recipe_type = RecipeType.create(name: 'Sobremesa')
     cuisine = Cuisine.create(name: 'Brasileira')
+    file = fixture_file_upload("recipe.jpeg")
     recipe = Recipe.create(title: 'Bolo de cenoura', difficulty: 'Médio', user: user,
                            recipe_type: recipe_type, cuisine: cuisine,
-                           cook_time: 50,
+                           cook_time: 50, recipe_photo: file,
                            ingredients: 'Farinha, açucar, cenoura',
                            cook_method: 'Cozinhe a cenoura, corte em pedaços pequenos,'\
                            ' misture com o restante dos ingredientes')
@@ -37,9 +38,10 @@ feature 'Admin approved recipes' do
     admin = User.create!(email: 'admin@email.com', password: '123456', admin: true)
     recipe_type = RecipeType.create(name: 'Sobremesa')
     cuisine = Cuisine.create(name: 'Brasileira')
+    file = fixture_file_upload("recipe.jpeg")
     recipe = Recipe.create(title: 'Bolo de cenoura', difficulty: 'Médio', user: user,
                            recipe_type: recipe_type, cuisine: cuisine,
-                           cook_time: 50,
+                           cook_time: 50, recipe_photo: file,
                            ingredients: 'Farinha, açucar, cenoura',
                            cook_method: 'Cozinhe a cenoura, corte em pedaços pequenos,'\
                            ' misture com o restante dos ingredientes')

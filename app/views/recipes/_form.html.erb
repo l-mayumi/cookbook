@@ -7,7 +7,7 @@
 <%= form_for @recipe do |form| %>
   <div class="form-group">
     <%= form.label :title , 'Título'%><br>
-    <%= form.text_field :title %>
+    <%= form.text_field :title, class: "form-control" %>
   </div>
  
   <div class="form-group">
@@ -22,27 +22,27 @@
 
   <div class="form-group">
     <%= form.label :difficulty, 'Dificuldade' %><br>
-    <%= form.text_field :difficulty %>
+    <%= form.text_field :difficulty, class: "form-control" %>
   </div>
 
   <div class="form-group">
     <%= form.label :cook_time, 'Tempo de Preparo' %><br>
-    <%= form.number_field :cook_time %>
+    <%= form.number_field :cook_time, class: "form-control" %>
   </div>
 
   <div class="form-group">
     <%= form.label :ingredients, 'Ingredientes' %><br>
-    <%= form.text_area :ingredients %>
+    <%= form.text_area :ingredients, class: "form-control" %>
   </div>
  
   <div class="form-group">
     <%= form.label :cook_method, 'Como Preparar' %><br>
-    <%= form.text_area :cook_method %>
+    <%= form.text_area :cook_method, class: "form-control" %>
   </div>
 
   <div class="form-group">
     <%= form.label :recipe_photo, 'Enviar foto'%>
-    <%= form.file_field :recipe_photo %>
+    <%= form.file_field :recipe_photo, class: "form-control-file" %>
   </div>
 
   <div class="form-group">

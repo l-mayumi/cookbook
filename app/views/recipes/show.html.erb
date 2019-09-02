@@ -1,10 +1,12 @@
   <h2><%= @recipe.title %></h2>
   <p>Receita enviada por <%= @recipe.user.email %>.
   <% if @recipe.rejected? %>
-    <span class="btn btn-outline-danger">Recusada</span>
+    <span class="badge badge-pill badge-danger">Recusada</span>
   <% else %>
     <% if @recipe.pending? %>
-      <span class="btn btn-outline-warning">Pendente</span>
+      <span class="badge badge-pill badge-warning">Pendente</span>
+    <% else %>
+      <span class="badge badge-pill badge-success">Aprovada</span>
     <% end %>
   <% end %>
   <br>

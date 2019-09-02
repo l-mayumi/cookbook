@@ -24,6 +24,7 @@ feature 'User register recipe' do
     fill_in 'Tempo de Preparo', with: '45'
     fill_in 'Ingredientes', with: 'Trigo para quibe, cebola, tomate picado, azeite, salsinha'
     fill_in 'Como Preparar', with: 'Misturar tudo e servir. Adicione limão a gosto.'
+    attach_file("Enviar foto", Rails.root + "recipe.jpeg")
     click_on 'Enviar'
     click_on 'Receitas pendentes'
 
@@ -59,18 +60,19 @@ feature 'User register recipe' do
     user = User.create(email: 'user0@email.com', password: '123456')
     recipe_type = RecipeType.create(name: 'Sobremesa')
     cuisine = Cuisine.create(name: 'Brasileira')
+    file = fixture_file_upload("recipe.jpeg")
     Recipe.create(title: 'Bolo de cenoura', recipe_type: recipe_type,
-                  difficulty: 'Médio', cuisine: cuisine,
+                  difficulty: 'Médio', cuisine: cuisine, recipe_photo: file,
                   cook_time: 50, ingredients: 'Farinha, açucar, cenoura',
                   cook_method: 'Cozinhe a cenoura, corte em pedaços pequenos, misture com o restante dos ingredientes',
                   user: user, status: :approved)
     Recipe.create(title: 'Bolo de laranja', recipe_type: recipe_type,
-                    difficulty: 'Médio', cuisine: cuisine,
+                    difficulty: 'Médio', cuisine: cuisine, recipe_photo: file,
                     cook_time: 50, ingredients: 'Farinha, açucar, laranja',
                     cook_method: 'Corte a laranja em pedaços pequenos, misture com o restante dos ingredientes',
                     user: user, status: :pending)
     Recipe.create(title: 'Bolo de chocolate', recipe_type: recipe_type,
-                      difficulty: 'Médio', cuisine: cuisine,
+                      difficulty: 'Médio', cuisine: cuisine, recipe_photo: file,
                       cook_time: 50, ingredients: 'Farinha, açucar, cenoura',
                       cook_method: 'Corte o chocolate em pedaços pequenos, misture com o restante dos ingredientes',
                       user: user, status: :rejected)
@@ -84,8 +86,8 @@ feature 'User register recipe' do
     click_on 'Login'
 
     # expectativas
-    expect(page).to have_css('h1', text: 'Bolo de cenoura')
-    expect(page).not_to have_css('h1', text: 'Bolo de laranja')
-    expect(page).not_to have_css('h1', text: 'Bolo de chocolate')
+    expect(page).to have_css('h4', text: 'Bolo de cenoura')
+    expect(page).not_to have_css('h4', text: 'Bolo de laranja')
+    expect(page).not_to have_css('h4', text: 'Bolo de chocolate')
   end
 end

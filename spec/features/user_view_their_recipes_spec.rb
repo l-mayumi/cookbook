@@ -7,16 +7,17 @@ feature 'User view their recipes' do
     another_user = User.create(email: 'user1@email.com', password: '123456')
     recipe_type = RecipeType.create(name: 'Sobremesa')
     cuisine = Cuisine.create(name: 'Brasileira')
+    file = fixture_file_upload("recipe.jpeg")
     recipe = Recipe.create(title: 'Bolo de cenoura', recipe_type: recipe_type,
                            cuisine: cuisine, difficulty: 'Médio',
-                           cook_time: 60,
+                           cook_time: 60, recipe_photo: file,
                            ingredients: 'Farinha, açucar, cenoura',
                            cook_method: 'Cozinhe a cenoura, corte em pedaços pequenos,'\
                            ' misture com o restante dos ingredientes', user: user)
 
     another_recipe = Recipe.create(title: 'Bolo de chocolate', recipe_type: recipe_type,
                             cuisine: cuisine, difficulty: 'Médio',
-                            cook_time: 60,
+                            cook_time: 60, recipe_photo: file,
                             ingredients: 'Farinha, açucar, chocolate',
                             cook_method: 'Corte o chocolate em pedaços pequenos,'\
                             ' misture com o restante dos ingredientes', user: another_user)
@@ -31,7 +32,7 @@ feature 'User view their recipes' do
     click_on 'Minhas Receitas'
 
     # expectativas do usuário após a ação
-    expect(page).to have_css('h1', text: recipe.title)
+    expect(page).to have_css('h4', text: recipe.title)
     expect(page).not_to have_css('h1', text: another_recipe.title)
   end
 
