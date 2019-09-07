@@ -47,6 +47,7 @@ class RecipesController < ApplicationController
 
   def update
     @recipe = Recipe.find(params[:id])
+    @recipe.status = :pending
     
     if @recipe.update(recipe_params)
       redirect_to @recipe
