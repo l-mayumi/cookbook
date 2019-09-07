@@ -1,5 +1,5 @@
   <h2><%= @recipe.title %></h2>
-  <p>Receita enviada por <%= @recipe.user.email %>.
+  <p><small>Receita enviada por <%= @recipe.user.email %>.</small>
   <% if @recipe.rejected? %>
     <span class="badge badge-pill badge-danger">Recusada</span>
   <% else %>
@@ -17,7 +17,7 @@
 
   <p>
     <% if @recipe.recipe_photo %>
-      <%= image_tag @recipe.recipe_photo, class: "img" %>
+      <%= image_tag @recipe.recipe_photo, class: "img-fluid" %>
     <% end %>
   </p>
  

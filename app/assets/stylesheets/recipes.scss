@@ -1,0 +1,77 @@
+$font-stack: Helvetica, sans-serif;
+$primary: rgb(167, 32, 32);
+$titles: Helvetica, sans-serif;
+
+body{
+    font: 0.75em $font-stack;
+    line-height: 1.2em;
+    color: $black;
+    background: $primary;
+}
+
+.container{
+    background: #FFF;
+}
+
+.item-img{
+    width: 150px;
+    height: 150px;
+}
+
+h1, h2, h3, h4, h5{
+    color: $primary;
+    font-family: $titles;
+}
+
+a{
+    font: $font-stack;
+    line-height: 1em;
+    color: $primary;
+}
+
+a:hover, a:active{
+    text-decoration: none;
+    color: $black;
+}
+
+nav{
+    background: 100% $primary;
+    font: 100% $font-stack;
+    color: #FFF;
+    text-align: right;
+
+
+    a{
+        color: #FFF;
+    }
+
+    a:hover{
+        color:#FFF;
+        background: $black;
+    }
+
+    a:active{
+        color: $primary;
+        background: #FFF;
+    }
+}
+
+ul{
+    padding-left: 20px;
+}
+
+hr{
+    border: 2px solid $primary;
+    width: 100%;
+}
+
+.logo{
+    a, a:hover, a:active{
+        color: $primary;
+        text-decoration: none;
+        font-family: $titles;
+        letter-spacing: 5px;
+        text-transform: uppercase;
+        background: none;
+    }
+}
