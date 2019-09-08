@@ -1,5 +1,20 @@
 <h2><%= @recipe_list.title%></h2>
 
 <% if @recipe_list.recipe_list_items.any? %>
-  <%= render 'recipes/item' %>
+  <% @recipe_list_items.each do |r| %>
+  <article class="col-sm-6 float-left media">
+    <p>
+      <%= image_tag r.recipe.recipe_photo, class: "float-left item-img rounded-circle" %>
+      <div class="media-body">
+        <h4><%= link_to r.recipe.title, r.recipe %></h4>
+        <ul>
+          <li><%= r.recipe.recipe_type.name %></li>
+          <li><%= r.recipe.cuisine.name %></li>
+          <li><%= r.recipe.difficulty %></li>
+          <li><%= r.recipe.cook_time_min %></li>
+        </ul>
+      </div>
+    </p>
+  </article>
+  <% end %>
 <% end %>

@@ -15,6 +15,7 @@ class RecipesController < ApplicationController
     @recipe = Recipe.find(params[:id])
     @user = current_user
     @recipe_lists = RecipeList.where(user: current_user)
+    @recipe_list_item = RecipeListItem.new
   end
 
   def new

@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   resources :recipe_types, only: %i[show new create]
   resources :cuisines, only: %i[show new create]
   resources :recipe_lists, only: %i[show new create]
-  resources :recipe_list_items, only: %i[new show create]
+  resources :recipe_list_items, only: %i[create]
   
   get 'my_recipes', to: 'users#my_recipes'
   get 'my_lists', to: 'users#my_lists'

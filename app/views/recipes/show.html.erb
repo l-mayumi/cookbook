@@ -1,68 +1,86 @@
-  <div class="row">
-    <div class="col-8">
-      <h2><%= @recipe.title %></h2>
-      <p>
-        <small>Receita enviada por <%= @recipe.user.email %>.</small>
-          <% if @recipe.rejected? %>
-            <span class="badge badge-pill badge-danger">Recusada</span>
+<div class="row">
+  <div class="col-8">
+    <h2><%= @recipe.title %></h2>
+    <p>
+      <small>Receita enviada por <%= @recipe.user.email %>.</small>
+        <% if @recipe.rejected? %>
+          <span class="badge badge-pill badge-danger">Recusada</span>
+        <% else %>
+          <% if @recipe.pending? %>
+            <span class="badge badge-pill badge-warning">Pendente</span>
           <% else %>
-            <% if @recipe.pending? %>
-              <span class="badge badge-pill badge-warning">Pendente</span>
-            <% else %>
-              <span class="badge badge-pill badge-success">Aprovada</span>
-            <% end %>
+            <span class="badge badge-pill badge-success">Aprovada</span>
           <% end %>
-        </p>
-    </div>
-
-    <div class="col-4 text-right">
-      <% if current_user && current_user.admin? %>
-        <%= link_to 'Aprovar', approve_recipe_path, class: "btn btn-success btn-sm" %>
-        <%= link_to 'Rejeitar', reject_recipe_path, class: "btn btn-danger btn-sm" %>
-      <% end%>
-    </div>
+        <% end %>
+      </p>
   </div>
 
-
-  <p>
-    <% if @recipe.recipe_photo %>
-      <%= image_tag @recipe.recipe_photo, class: "img-fluid" %>
+  <div class="col-4 text-right">
+    <% if @recipe.user == current_user %>
+      <%= link_to 'Editar', edit_recipe_path, class: "btn btn-dark btn-sm" %>
     <% end %>
-  </p>
+    <% if current_user && current_user.admin? %>
+      <%= link_to 'Aprovar', approve_recipe_path, class: "btn btn-success btn-sm" %>
+      <%= link_to 'Rejeitar', reject_recipe_path, class: "btn btn-danger btn-sm" %>
+    <% end%>
+  </div>
+</div>
 
-  <p>
-    <% if user_signed_in? && @user.recipe_lists.any? %>
-      <%= form_with model: @recipe_list_item do |form| %>
-        <%= form.label :recipe_list_id, "Adicinar à lista" %>
-        <%= form.collection_select(:recipe_list_id, @recipe_lists, :id, :title) %>
-        <%= form.hidden_field :recipe_id, value: params[:id] %>
-        <%= form.submit %>
-      <% end %>
-      
-    <% end %>
-  </p>
- 
-  <h3>Detalhes</h3>
-  <p>Tipo da Receita: 
-    <%= @recipe.recipe_type.name %></p>
-  <p>Cozinha:
-  	<%= @recipe.cuisine.name %></p>
-  <p>Dificuldade:
-  	<%= @recipe.difficulty %></p>
-  <p>Tempo de Preparo:
-  	<%= @recipe.cook_time_min %></p>
 
-  <h3>Ingredientes</h3>
-  <p>
-    <%= @recipe.ingredients %>
-  </p>
+<p>
+  <% if @recipe.recipe_photo %>
+    <%= image_tag @recipe.recipe_photo, class: "img-fluid" %>
+  <% end %>
+</p>
 
-  <h3>Como Preparar</h3>
-  <p>
-    <%= @recipe.cook_method %>
-  </p>
+<h3>Detalhes</h3>
+<p>Tipo da Receita: 
+  <%= @recipe.recipe_type.name %></p>
+<p>Cozinha:
+  <%= @recipe.cuisine.name %></p>
+<p>Dificuldade:
+  <%= @recipe.difficulty %></p>
+<p>Tempo de Preparo:
+  <%= @recipe.cook_time_min %></p>
 
-<% if @recipe.user == current_user %>
-  <%= link_to 'Editar', edit_recipe_path, class: "btn btn-dark btn-sm" %>
+<h3>Ingredientes</h3>
+<p>
+  <%= @recipe.ingredients %>
+</p>
+
+<h3>Como Preparar</h3>
+<p>
+  <%= @recipe.cook_method %>
+</p>
+
+<% if user_signed_in? && @user.recipe_lists.any? %>
+  <h3>Listas</h3>
+  <% if flash[:failure] %>
+    <div class="alert alert-secondary">
+      <%= flash[:failure] %>
+    </div>
+  <% end %>
+  <%= form_with model: @recipe_list_item do |form| %>
+    <div class="form-group mx-auto">
+      <span class="mr-sm-1"><%= form.label :recipe_list_id, "Adicionar a" %></span>
+      <span class="mr-sm-1"><%= form.collection_select(:recipe_list_id, @recipe_lists, :id, :title) %></span>
+      <%= form.hidden_field :recipe_id, value: params[:id] %>
+      <%= form.submit "Salvar", class: "btn btn-dark btn-sm" %>
+    </div>
+  <% end %>
+
+  <% if @recipe.recipe_list_items.any? %>
+    <p>Salva em:
+      <ul>
+        <% @recipe.recipe_list_items.each do |r| %>
+          <li><%= r.recipe_list.title %></li>
+        <% end %>
+      </ul>
+    </p>
 <% end %>
- <%= link_to 'Voltar', root_path, class: "btn btn-secondary btn-sm" %>
+  
+<% end %>
+
+<p class="text-center">
+  <%= link_to 'Voltar', root_path, class: "btn btn-secondary btn-sm" %>
+</p>

@@ -3,12 +3,12 @@ class RecipeListItemsController < ApplicationController
   def create
     @recipe_list = RecipeList.find(params[:recipe_list_item][:recipe_list_id])
     @recipe = Recipe.find(params[:recipe_list_item][:recipe_id])
-    @recipe_list_item = RecipeListItem.create!(recipe: @recipe, recipe_list: @recipe_list)
+    @recipe_list_item = RecipeListItem.create(recipe: @recipe, recipe_list: @recipe_list)
     if @recipe_list_item.save
-      flash[:alert] = 'Receita adicionada com sucesso'
+      flash[:failure] = 'Receita adicionada com sucesso'
       redirect_to @recipe
     else
-      flash[:alert] = 'Esta receita ja foi adicionado a esta lista'
+      flash[:failure] = 'Esta receita já foi adicionada a esta lista'
       redirect_to @recipe
     end
   end
