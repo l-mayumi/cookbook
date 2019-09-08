@@ -1,23 +1,44 @@
-  <h2><%= @recipe.title %></h2>
-  <p><small>Receita enviada por <%= @recipe.user.email %>.</small>
-  <% if @recipe.rejected? %>
-    <span class="badge badge-pill badge-danger">Recusada</span>
-  <% else %>
-    <% if @recipe.pending? %>
-      <span class="badge badge-pill badge-warning">Pendente</span>
-    <% else %>
-      <span class="badge badge-pill badge-success">Aprovada</span>
-    <% end %>
-  <% end %>
-  <br>
-  <% if current_user && current_user.admin? %>
-    <%= link_to 'Aprovar', approve_recipe_path, class: "btn btn-success" %>
-    <%= link_to 'Rejeitar', reject_recipe_path, class: "btn btn-danger" %>
-  <% end%></p>
+  <div class="row">
+    <div class="col-8">
+      <h2><%= @recipe.title %></h2>
+      <p>
+        <small>Receita enviada por <%= @recipe.user.email %>.</small>
+          <% if @recipe.rejected? %>
+            <span class="badge badge-pill badge-danger">Recusada</span>
+          <% else %>
+            <% if @recipe.pending? %>
+              <span class="badge badge-pill badge-warning">Pendente</span>
+            <% else %>
+              <span class="badge badge-pill badge-success">Aprovada</span>
+            <% end %>
+          <% end %>
+        </p>
+    </div>
+
+    <div class="col-4 text-right">
+      <% if current_user && current_user.admin? %>
+        <%= link_to 'Aprovar', approve_recipe_path, class: "btn btn-success btn-sm" %>
+        <%= link_to 'Rejeitar', reject_recipe_path, class: "btn btn-danger btn-sm" %>
+      <% end%>
+    </div>
+  </div>
+
 
   <p>
     <% if @recipe.recipe_photo %>
       <%= image_tag @recipe.recipe_photo, class: "img-fluid" %>
+    <% end %>
+  </p>
+
+  <p>
+    <% if user_signed_in? && @user.recipe_lists.any? %>
+      <%= form_with model: @recipe_list_item do |form| %>
+        <%= form.label :recipe_list_id, "Adicinar à lista" %>
+        <%= form.collection_select(:recipe_list_id, @recipe_lists, :id, :title) %>
+        <%= form.hidden_field :recipe_id, value: params[:id] %>
+        <%= form.submit %>
+      <% end %>
+      
     <% end %>
   </p>
  
@@ -42,6 +63,6 @@
   </p>
 
 <% if @recipe.user == current_user %>
-  <%= link_to 'Editar', edit_recipe_path, class: "btn btn-dark" %>
+  <%= link_to 'Editar', edit_recipe_path, class: "btn btn-dark btn-sm" %>
 <% end %>
- <%= link_to 'Voltar', root_path, class: "btn btn-secondary" %>
+ <%= link_to 'Voltar', root_path, class: "btn btn-secondary btn-sm" %>

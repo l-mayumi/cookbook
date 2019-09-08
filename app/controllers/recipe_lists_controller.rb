@@ -3,7 +3,7 @@ class RecipeListsController < ApplicationController
 
   def show
     @recipe_list = RecipeList.find(params[:id])
-#    @recipe_list_items = RecipeListItems.where(recipe_list_id: recipe_list)
+    @recipe_list_item = @recipe_list.recipe_list_items
   end
 
   def new

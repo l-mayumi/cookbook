@@ -11,7 +11,7 @@ feature 'User signs in' do
         fill_in 'Senha', with: '123456'
         click_on 'Login'
 
-        expect(page).to have_css('p', text: 'Ola, user0@email.com!')
+        expect(page).to have_css('p', text: 'Olá, user0@email.com!')
         expect(page).to have_link('Sair')
         expect(page).not_to have_link('Entrar')
     end

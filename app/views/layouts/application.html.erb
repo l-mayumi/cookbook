@@ -19,7 +19,13 @@
       </div>
 
       <div class="row">
-        <nav class="col-sm-12">
+        <nav class="col-sm-3 text-left">
+          <% if user_signed_in? %>
+            <p>Olá, <%= current_user.email %>!</p>
+          <% end %>
+        </nav>
+
+        <nav class="col-sm-9 text-right">
           <ul class="nav nav-pills justify-content-end">
             <% if user_signed_in? %>
               <li class="nav-item"><%= link_to 'Enviar uma receita', new_recipe_path, class: "nav-link" %></li>
@@ -35,18 +41,11 @@
       </div>
 
       <div class="row mt-3">
-        <aside class="col-sm-4">
-          <% if user_signed_in? %>
-            <p>Ola, <%= current_user.email %>!</p>
-          <% end %>
-          
-          <p>
-            <%= render 'recipes/search' %>
-          </p>
-
+        <aside class="col-sm-4">          
           <h4>Ver receitas</h4>
           <p>
             <%= link_to 'Todas as receitas', all_recipes_path %>
+            <%= render 'recipes/search' %>
           </p>
           <p>
             <h5>Por tipo:</h5>

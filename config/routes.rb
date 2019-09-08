@@ -6,9 +6,10 @@ Rails.application.routes.draw do
   resources :recipes, only: %i[index show new create edit update approved rejected]
 
   resources :recipe_types, only: %i[show new create]
-  resources :recipe_lists, only: %i[show new create]
   resources :cuisines, only: %i[show new create]
-
+  resources :recipe_lists, only: %i[show new create]
+  resources :recipe_list_items, only: %i[new show create]
+  
   get 'my_recipes', to: 'users#my_recipes'
   get 'my_lists', to: 'users#my_lists'
   get 'pending_recipes', to: 'users#pending_recipes'

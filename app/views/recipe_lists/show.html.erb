@@ -1,2 +1,5 @@
 <h2><%= @recipe_list.title%></h2>
 
+<% if @recipe_list.recipe_list_items.any? %>
+  <%= render 'recipes/item' %>
+<% end %>

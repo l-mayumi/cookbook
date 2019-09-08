@@ -21,6 +21,7 @@ body{
 h1, h2, h3, h4, h5{
     color: $primary;
     font-family: $titles;
+    text-transform: capitalize;   
 }
 
 a{
@@ -38,8 +39,10 @@ nav{
     background: 100% $primary;
     font: 100% $font-stack;
     color: #FFF;
-    text-align: right;
 
+    p{
+        margin: 6px;
+    }
 
     a{
         color: #FFF;

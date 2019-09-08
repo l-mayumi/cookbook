@@ -1,14 +1,14 @@
 <h2>Minhas listas de receita</h2>
 <p>
-  <%= link_to 'Criar nova lista', new_recipe_list_path %>
+  <%= link_to 'Criar nova lista', new_recipe_list_path, class: "btn btn-success btn-sm" %>
 </p>
 
 <% if @recipe_lists.any? %>
-  <% @recipe_lists.each do |recipe_list| %>
   <ul>
-    <li><%= link_to recipe_list.title, recipe_list %></li>
+    <% @recipe_lists.each do |recipe_list| %>
+      <li><%= link_to recipe_list.title, recipe_list %></li>
+    <% end %>
   </ul>
-  <% end %>
 <% else %>
   <div class="alert alert-secondary">
     <%= flash[:failure] %>

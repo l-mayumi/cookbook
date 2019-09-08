@@ -1,5 +1,7 @@
 <h2>Receitas encontradas com  "<%= params[:busca] %>"</h2>
 
 <% @recipes.each do |recipe| %>
-  <li><%= link_to recipe.title, recipe %></li>
+  <ul>
+    <li><%= link_to recipe.title, recipe %></li>
+  </ul>
 <% end %>

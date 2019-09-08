@@ -6,9 +6,11 @@
 <% end %>
 
 <% if @recipes.any? %>
-  <% @recipes.each do |recipe| %>
-    <li><%= link_to recipe.title, recipe %></li>
-  <% end %>
+  <ul>
+    <% @recipes.each do |recipe| %>
+        <li><%= link_to recipe.title, recipe %></li>
+    <% end %>
+  </ul>
 <% else %>
   <div class="alert alert-secondary">
     <%= flash[:failure] %>

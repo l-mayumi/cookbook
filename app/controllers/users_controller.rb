@@ -13,7 +13,11 @@ class UsersController < ApplicationController
   end
 
   def pending_recipes
-    @recipes = Recipe.where(status: :pending)
+    if current_user.admin?
+      @recipes = Recipe.where(status: :pending)
+    else
+      @recipes = Recipe.where(status: :pending, user: current_user)
+    end
     flash.now[:failure] = 'Você não tem receitas pendentes.'
   end
 
