@@ -73,7 +73,7 @@
     <p>Salva em:
       <ul>
         <% @recipe.recipe_list_items.each do |r| %>
-          <li><%= r.recipe_list.title %></li>
+          <li><%= link_to r.recipe_list.title, r.recipe_list %></li>
         <% end %>
       </ul>
     </p>

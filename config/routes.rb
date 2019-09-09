@@ -16,4 +16,5 @@ Rails.application.routes.draw do
   get 'recipe/:id/reject', to: 'users#reject_recipe', as: 'reject_recipe'
   get 'recipe/:id/approve', to: 'users#approve_recipe', as: 'approve_recipe'
   get 'all_recipes', to: 'recipes#all_recipes'
+  delete 'recipe_list/:id/recipe/(.:recipe_id)', to: 'recipe_list_items#destroy', as: 'remove_from_list'
 end

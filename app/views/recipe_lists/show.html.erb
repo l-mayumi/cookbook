@@ -1,20 +1,24 @@
 <h2><%= @recipe_list.title%></h2>
-
-<% if @recipe_list.recipe_list_items.any? %>
-  <% @recipe_list_items.each do |r| %>
-  <article class="col-sm-6 float-left media">
-    <p>
-      <%= image_tag r.recipe.recipe_photo, class: "float-left item-img rounded-circle" %>
-      <div class="media-body">
-        <h4><%= link_to r.recipe.title, r.recipe %></h4>
-        <ul>
-          <li><%= r.recipe.recipe_type.name %></li>
-          <li><%= r.recipe.cuisine.name %></li>
-          <li><%= r.recipe.difficulty %></li>
-          <li><%= r.recipe.cook_time_min %></li>
-        </ul>
-      </div>
-    </p>
-  </article>
+<div class="row">
+  <% if @recipe_list.recipe_list_items.any? %>
+    <% @recipe_list_items.each do |r| %>
+    <article class="col-sm-6 media" id="<%= r.id %>">
+      <p>
+        <%= image_tag r.recipe.recipe_photo, class: "float-left item-img rounded-circle" %>
+        <div class="media-body">
+          <h4><%= link_to r.recipe.title, r.recipe %></h4>
+          <ul>
+            <li><%= r.recipe.recipe_type.name %></li>
+            <li><%= r.recipe.cuisine.name %></li>
+            <li><%= r.recipe.difficulty %></li>
+            <li><%= r.recipe.cook_time_min %></li>
+          </ul>
+          <p class="float-right">
+            <%= link_to "Excluir", remove_from_list_path(params[:id], r.recipe.id), method: 'delete', class: "btn btn-sm btn-danger"%>
+          </p>
+        </div>
+      </p>
+    </article>
+    <% end %>
   <% end %>
-<% end %>
+</div>

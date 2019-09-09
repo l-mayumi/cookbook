@@ -18,7 +18,7 @@ class RecipeListItemsController < ApplicationController
     @recipe = Recipe.find(params[:recipe_id])
     @recipe_list_item = RecipeListItem.where(recipe: @recipe, recipe_list: @recipe_list)
     RecipeListItem.delete(@recipe_list_item)
-    flash[:alert] = "Receita #{@recipe.title} foi removida da lista"
+    flash[:alert] = "#{@recipe.title} foi removida"
     redirect_to @recipe_list
   end
 end
