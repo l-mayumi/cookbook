@@ -1,4 +1,5 @@
 class CuisinesController < ApplicationController
+  before_action :authenticate_user!, only: %i[new create edit update]
   before_action :verify_admin, only: %i[new create edit update]
 
   def show
@@ -15,7 +16,7 @@ class CuisinesController < ApplicationController
     if @cuisine.save
       redirect_to @cuisine
     else
-      flash[:alert] = 'Você deve informar o nome do tipo de cozinha'
+      flash[:alert] = 'Você deve informar um nome único'
       render :new
     end
   end
