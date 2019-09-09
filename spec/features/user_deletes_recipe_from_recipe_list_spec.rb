@@ -13,7 +13,14 @@ feature 'User deletes recipe from recipe list' do
                             ingredients: 'Farinha, açucar, cenoura',
                             cook_method: 'Cozinhe a cenoura, corte em pedaços pequenos,'\
                             ' misture com o restante dos ingredientes', user: user)
+    other_recipe = Recipe.create(title: 'Bolo de chocolate', recipe_type: recipe_type,
+                            cuisine: cuisine, difficulty: 'Médio',
+                            cook_time: 60, recipe_photo: file,
+                            ingredients: 'Farinha, açucar, chocolate',
+                            cook_method: 'Corte o chocolate em pedaços pequenos,'\
+                            ' misture com o restante dos ingredientes', user: user)
     recipe_list_item = RecipeListItem.create(recipe: recipe, recipe_list: recipe_list)
+    other_recipe_list_item = RecipeListItem.create(recipe: other_recipe, recipe_list: recipe_list)
     
     visit root_path
     click_on 'Entrar'
@@ -24,8 +31,9 @@ feature 'User deletes recipe from recipe list' do
     
     click_on 'Minhas Listas'
     click_on 'Bolos preferidos'
-    within(recipe_list_item.id)
+    within("article##{recipe_list_item.id}") do
         click_on 'Excluir'
+    end
 
     expect(page).not_to have_css('h4', text: 'Bolo de cenoura')
   end

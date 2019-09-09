@@ -1,5 +1,6 @@
 <h2><%= @recipe_list.title%></h2>
-<div class="row">
+<p><small>Lista criada por <%= @recipe_list.user.email %></small></p>
+<div class="row mt-2">
   <% if @recipe_list.recipe_list_items.any? %>
     <% @recipe_list_items.each do |r| %>
     <article class="col-sm-6 media" id="<%= r.id %>">
