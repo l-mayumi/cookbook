@@ -41,7 +41,10 @@
       </div>
 
       <div class="row mt-3">
-        <aside class="col-sm-4">          
+        <aside class="col-sm-4">
+          <% if current_user && current_user.admin? %>
+            <%= render 'users/admin' %>
+          <% end %>                   
           <h4>Ver receitas</h4>
           <p>
             <%= link_to 'Todas as receitas', all_recipes_path %>

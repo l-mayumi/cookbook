@@ -16,7 +16,7 @@
   </div>
 
   <div class="col-4 text-right">
-    <% if @recipe.user == current_user %>
+    <% if current_user && (current_user == @recipe.user || current_user.admin?) %>
       <%= link_to 'Editar', edit_recipe_path, class: "btn btn-dark btn-sm" %>
     <% end %>
     <% if current_user && current_user.admin? %>
@@ -34,13 +34,13 @@
 </p>
 
 <h3>Detalhes</h3>
-<p>Tipo da Receita: 
+<p><strong>Tipo da Receita:</strong>
   <%= @recipe.recipe_type.name %></p>
-<p>Cozinha:
+<p><strong>Cozinha:</strong>
   <%= @recipe.cuisine.name %></p>
-<p>Dificuldade:
+<p><strong>Dificuldade:</strong>
   <%= @recipe.difficulty %></p>
-<p>Tempo de Preparo:
+<p><strong>Tempo de Preparo:</strong>
   <%= @recipe.cook_time_min %></p>
 
 <h3>Ingredientes</h3>
