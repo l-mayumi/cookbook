@@ -53,13 +53,8 @@
   <%= @recipe.cook_method %>
 </p>
 
+<h3>Listas</h3>
 <% if user_signed_in? && @user.recipe_lists.any? %>
-  <h3>Listas</h3>
-  <% if flash[:failure] %>
-    <div class="alert alert-secondary">
-      <%= flash[:failure] %>
-    </div>
-  <% end %>
   <%= form_with model: @recipe_list_item do |form| %>
     <div class="form-group mx-auto">
       <span class="mr-sm-1"><%= form.label :recipe_list_id, "Adicionar a" %></span>
@@ -68,17 +63,24 @@
       <%= form.submit "Salvar", class: "btn btn-dark btn-sm" %>
     </div>
   <% end %>
-
-  <% if @recipe.recipe_list_items.any? %>
-    <p>Salva em:
-      <ul>
-        <% @recipe.recipe_list_items.each do |r| %>
-          <li><%= link_to r.recipe_list.title, r.recipe_list %></li>
-        <% end %>
-      </ul>
-    </p>
 <% end %>
-  
+
+<% if flash[:failure] %>
+  <div class="alert alert-secondary">
+    <%= flash[:failure] %>
+  </div>
+<% end %>
+
+<% if @recipe.recipe_list_items.any? %>
+  <p>Salva em:
+    <ul>
+      <% @recipe.recipe_list_items.each do |r| %>
+        <li><%= link_to r.recipe_list.title, r.recipe_list %></li>
+      <% end %>
+    </ul>
+  </p>
+<% else %>
+  <p>Não está em nenhuma lista.</p>
 <% end %>
 
 <p class="text-center">

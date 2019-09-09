@@ -15,7 +15,9 @@
             <li><%= r.recipe.cook_time_min %></li>
           </ul>
           <p class="float-right">
-            <%= link_to "Excluir", remove_from_list_path(params[:id], r.recipe.id), method: 'delete', class: "btn btn-sm btn-danger"%>
+            <% if current_user && current_user == @recipe_list.user %>
+              <%= link_to "Excluir", remove_from_list_path(params[:id], r.recipe.id), method: 'delete', class: "btn btn-sm btn-danger"%>
+            <% end %>
           </p>
         </div>
       </p>
