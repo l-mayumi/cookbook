@@ -5,6 +5,7 @@ class CuisinesController < ApplicationController
   def show
     @cuisine = Cuisine.find(params[:id])
     @recipes = @cuisine.recipes
+    flash.now[:failure] = 'Não há receitas dessa cozinha.'
   end
   
   def new

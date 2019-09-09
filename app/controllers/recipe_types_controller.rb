@@ -5,6 +5,7 @@ class RecipeTypesController < ApplicationController
   def show
     @recipe_type = RecipeType.find(params[:id])
     @recipes = @recipe_type.recipes
+    flash.now[:failure] = 'Não há receitas desse tipo.'
   end
 
   def new

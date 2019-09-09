@@ -23,4 +23,8 @@
       </p>
     </article>
   <% end %>
+<% else %>
+  <div class="alert alert-secondary">
+    <%= flash[:failure] %>
+  </div>
 <% end %>
