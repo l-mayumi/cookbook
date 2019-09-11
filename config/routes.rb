@@ -17,4 +17,11 @@ Rails.application.routes.draw do
   get 'recipe/:id/approve', to: 'users#approve_recipe', as: 'approve_recipe'
   get 'all_recipes', to: 'recipes#all_recipes'
   delete 'recipe_list/:id/recipe/(.:recipe_id)', to: 'recipe_list_items#destroy', as: 'remove_from_list'
+
+  namespace :api, defaults: { format: 'json' } do
+    namespace :v1 do
+      resources :recipe_types, only: %i[show]
+      resources :recipes, only: %i[index show]
+    end
+  end
 end
