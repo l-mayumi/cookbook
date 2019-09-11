@@ -15,8 +15,18 @@ class Api::V1::RecipesController < Api::V1::ApiController
 
     render json: {recipe: @recipe}, except: %i[created_at updated_at], status: 202, include: {recipes: {except: %i[created_at updated_at]}}
     
-    rescue ActiveRecord::RecordNotFound
-      render json: {message: "ID inválido."}, status: 404
+  rescue ActiveRecord::RecordNotFound
+    render json: {message: "ID inválido."}, status: 404
+  end
+
+  def destroy
+    @recipe = Recipe.find(params[:id])
+    @recipe.destroy
+
+    render json: @recipe, status: 200
+
+  rescue ActiveRecord::RecordNotFound
+    render json: { message: "ID inválido."}, status: 404
   end
 
   private
