@@ -19,7 +19,7 @@ describe 'API creates recipe type' do
 
     json_recipe_type = JSON.parse(response.body, symbolize_names: true)
 
-    expect(response.status).to eq 404
+    expect(response.status).to eq 406
     expect(json_recipe_type[:message]).to eq 'Erro ao salvar tipo de receita'
   end
 end
