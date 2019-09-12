@@ -18,6 +18,15 @@ class Api::V1::RecipesController < Api::V1::ApiController
     render json: {message: "ID inválido."}, status: 404
   end
 
+  def reject
+    @recipe = Recipe.find(params[:id])
+    @recipe.status = :rejected
+
+    render json: @recipe, except: %i[created_at], status: 202
+  rescue ActiveRecord::RecordNotFound
+    render json: {message: "ID inválido."}, status: 404
+  end
+
   def show 
     @recipe = Recipe.find(params[:id])
 
