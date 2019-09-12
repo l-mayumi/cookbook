@@ -22,6 +22,9 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :recipe_types, only: %i[show create]
       resources :recipes, only: %i[show create destroy]
+
+      post 'recipes/:id/approve', to: 'recipes#approve', as: 'approve_recipe'
+      post 'recipes/:id/reject', to: 'recipes#reject', as: 'reject_recipe'
     end
   end
 end
